@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var gridOption = false
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Button(action: {}) {
+            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Button")/*@END_MENU_TOKEN@*/
+        }
+        
+        ScrollView {
+            if gridOption {
+                LazyVGrid(columns: <#[GridItem]#>) {
+                    ForEach(1...1000, id: \.self) { value in
+                        Text("Row \(value)")
+                    }
+                }
+            } else {
+                //code
+            }
+              
+        }
     }
 }
 
