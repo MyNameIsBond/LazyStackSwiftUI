@@ -30,9 +30,9 @@ let messages = [
     Drinks(name: "Abilene", image: "smb2oe1582479072", description: "Pour all of the ingredients into a highball glass almost filled with ice cubes. Stir well."),
     Drinks(name: "Almeria", image: "rwsyyu1483388181", description: "In a shaker half-filled with ice cubes, combine all of the ingredients. Shake well. Strain into a cocktail glass."),
     Drinks(name: "Addison", image: "yzva7x1504820300", description: "Shake together all the ingredients and strain into a cold glass."),
-    Drinks(name: "Acapulco", image: "lol", description: "Combine and shake all ingredients (except mint) with ice and strain into an old-fashioned glass over ice cubes. Add the sprig of mint and serve."),
-    Drinks(name: "Afinidad", image: "il9e0r1582478841", description: "lol"),
-    Drinks(name: "lol", image: "wzdtnn1582477684", description: "In a mixing glass half-filled with ice cubes, combine all of the ingredients. Stir well. Strain into a cocktail glass."),
+    Drinks(name: "Acapulco", image: "il9e0r1582478841", description: "Combine and shake all ingredients (except mint) with ice and strain into an old-fashioned glass over ice cubes. Add the sprig of mint and serve."),
+    Drinks(name: "Afinidad", image: "il9e0r1582478841", description: "In a mixing glass half-filled with ice cubes, combine all of the ingredients. Stir well. Strain into a cocktail glass."),
+    Drinks(name: "Affinity", image: "wzdtnn1582477684", description: "In a mixing glass half-filled with ice cubes, combine all of the ingredients. Stir well. Strain into a cocktail glass."),
     Drinks(name: "Applecar", image: "sbffau1504389764", description: "Shake all ingredients with ice, strain into a cocktail glass, and serve."),
     Drinks(name: "Aviation", image: "ruutxt1478253328", description: "Add all ingredients into cocktail shaker filled with ice. Shake well and strain into cocktail glass. Garnish with a cherry."),
     Drinks(name: "Alexander", image: "urystu1478253039", description: "Shake all ingredients with ice and strain contents into a cocktail glass. Sprinkle nutmeg on top and serve."),
@@ -75,10 +75,17 @@ struct ContentView: View {
     @State var gridOption = false
     var body: some View {
         ScrollView {
-            ForEach(messages) { m in
-                Image(m.image)
-                    .resizable()
-                    .frame(width: 50, height: 50)
+            LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], alignment: .center) {
+                ForEach(messages) { m in
+                    VStack {
+                        Image(m.image)
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                        Text(m.name)
+                        Text(m.description).lineLimit(1)
+                        
+                    }.background(Color.red)
+                }
             }
         }
     }
