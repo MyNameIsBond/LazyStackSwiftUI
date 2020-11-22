@@ -1,7 +1,4 @@
-
 import SwiftUI
-
-
 
 struct Drinks: Identifiable {
     var id = UUID()
@@ -67,20 +64,23 @@ let messages = [
 
 struct ContentView: View {
     
-    let rows = [
+    let columns = [
         GridItem(.flexible()),GridItem(.flexible())
     ]
     
-    let row = [GridItem(.flexible())]
+    let column = [GridItem(.flexible())]
+    
+   
 
 //    var columns: [GridItem] =
 //             Array(repeating: .init(.flexible()), count: 2)
     
     @State var gridOption = false
+    @State var name = ""
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: gridOption ? rows : row , alignment: .center) {
+                LazyVGrid(columns: gridOption ? columns : column , alignment: .center) {
                     ForEach(messages) { m in
                         if gridOption {
                             doubleColumn(gridOption: gridOption, m: m)
