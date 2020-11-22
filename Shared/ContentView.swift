@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  Shared
-//
-//  Created by Tony Hajdini on 18/11/2020.
-//
 
 import SwiftUI
 
@@ -71,15 +65,6 @@ let messages = [
     Drinks(name: "Brandy Flip", image: "6ty09d1504366461", description: "In einem Shaker, der halb mit Eisw ist, Brandy, Ei, Zucker und Sahne vermengen. Gut schctte ln. In ein Sour Glas abseihen und mit der Muskatnuss garnieren.",type: "Alcoholic"),
 ]
 
-extension View {
-    func gridDesign() -> some View {
-        self
-            .padding(.horizontal)
-            .padding(.vertical, 10)
-            .shadow(radius: 10)
-    }
-}
-
 struct ContentView: View {
     
     let rows = [
@@ -88,8 +73,8 @@ struct ContentView: View {
     
     let row = [GridItem(.flexible())]
 
-    var columns: [GridItem] =
-             Array(repeating: .init(.flexible()), count: 2)
+//    var columns: [GridItem] =
+//             Array(repeating: .init(.flexible()), count: 2)
     
     @State var gridOption = false
     var body: some View {
@@ -99,14 +84,13 @@ struct ContentView: View {
                     ForEach(messages) { m in
                         if gridOption {
                             doubleColumn(gridOption: gridOption, m: m)
-                                .gridDesign()
                         } else {
                             singleColumn(gridOption: gridOption, m: m)
-                                .gridDesign()
                         }
                     }
-                }
+                }.padding(.horizontal)
             }.navigationTitle("Cocktails")
+            
             .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {
                     gridOption.toggle()
@@ -126,23 +110,30 @@ struct singleColumn: View {
             Image(m.image)
             .resizable()
             .frame(height: gridOption ? 100 : 300)
-                .overlay(LinearGradient(gradient: Gradient(colors:[Color.black, Color.blue.opacity(0.2)]), startPoint: .topLeading, endPoint: .center))
+                .overlay(Color.black.opacity(0.3))
                 .cornerRadius(15)
-            VStack(alignment: .leading) {
-                Text(m.type)
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(Color.gray)
-                    .textCase(.uppercase)
-                    
-                Text(m.name).font(.title2)
+            VStack(alignment: .leading, spacing: 7) {
+                HStack {
+                    Image(systemName: "a.square.fill").foregroundColor(Color.gray)
+                    Text(m.type)
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color.gray)
+                        .textCase(.uppercase)
+                }
+                Text(m.name).font(.title)
                     .foregroundColor(Color.white)
+                    .fontWeight(.bold)
                 Spacer()
                 Text(m.description)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .foregroundColor(Color.white)
             }.padding()
+            .padding(.horizontal, 5)
         }
+        .padding(.horizontal,0)
+        .padding(.vertical, 10)
+        .shadow(color: Color.gray, radius: 12 )
     }
 }
 
@@ -153,15 +144,20 @@ struct doubleColumn: View {
         VStack {
             Image(m.image)
                 .resizable()
-                .frame(height: gridOption ? 100 : 300)
-                
+                .frame(height: 150)
+                .cornerRadius(5)
+                .shadow(radius: 1)
             VStack(alignment: .leading) {
-                Text(m.name).font(.title2)
-                    .fontWeight(.bold)
+                HStack {
+                    Text(m.name)
+                    Spacer()
+                    Image(systemName: "a.square.fill")
+                }
                 Text(m.description).lineLimit(1)
+                    .foregroundColor(Color.gray)
             }
-        }.background(Color.green)
-        .cornerRadius(20)
+        }
+        
     }
 }
 
