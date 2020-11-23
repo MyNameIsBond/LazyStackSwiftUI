@@ -69,14 +69,12 @@ struct ContentView: View {
     ]
     
     let column = [GridItem(.flexible())]
-    
-   
+
 
 //    var columns: [GridItem] =
 //             Array(repeating: .init(.flexible()), count: 2)
     
     @State var gridOption = false
-    @State var name = ""
     var body: some View {
         NavigationView {
             ScrollView {
