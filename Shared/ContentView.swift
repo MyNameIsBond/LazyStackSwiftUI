@@ -80,6 +80,23 @@ extension Animation {
     }
 }
 
+struct Buttons: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(10)
+            .foregroundColor(Color.gray)
+            .background(Color.white)
+            .clipShape(Circle())
+            .shadow(radius: 4)
+    }
+}
+
+extension View {
+    func circleButton() -> some View {
+           modifier(Buttons())
+       }
+}
+
 
 struct ContentView: View {
     
@@ -92,8 +109,30 @@ struct ContentView: View {
     
     @State var gridOption = false
     var body: some View {
-        NavigationView {
                 ScrollView {
+                    HStack {
+                        Button(action: {}) {
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                            }
+                        }.circleButton()
+                        Spacer(minLength: 0)
+                        Image("logoDark")
+                            .resizable()
+                            .frame(width: 150, height: 40)
+                            .aspectRatio(contentMode: .fit)
+                        
+                        Spacer(minLength: 0)
+                        Button(action: {
+                            withAnimation {
+                                gridOption.toggle()
+                            }
+                        }) {
+                            Image(systemName: gridOption ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
+                        }.circleButton()
+                    }.padding()
+                    
+                    
                     LazyVGrid(columns: gridOption ? columns : column , alignment: .center) {
                         ForEach(cocktails) { m in
                             if gridOption {
@@ -101,6 +140,7 @@ struct ContentView: View {
                                     .transition(.moveAndFade)
                                     .animation(.ripple(index: 2))
                             } else {
+                                
                                 singleColumn(gridOption: gridOption, m: m)
                                     .transition(.moveAndFade)
                                     .animation(.ripple(index: 1))
@@ -108,18 +148,7 @@ struct ContentView: View {
                         }
                     }.padding(.horizontal)
                 }.navigationTitle("Cocktails")
-            .navigationBarItems(leading: EditButton(), trailing:
-                Button(action: {
-                    withAnimation {
-                        gridOption.toggle()
-                            
-                    }
-                    
-                }) {
-                    Image(systemName: gridOption ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
-                }
-            )
-        }
+            .navigationBarItems(leading: EditButton())
     }
 }
 
@@ -178,7 +207,6 @@ struct doubleColumn: View {
                     .foregroundColor(Color.gray)
             }
         }
-        
     }
 }
 
