@@ -97,7 +97,6 @@ extension View {
        }
 }
 
-
 struct ContentView: View {
     
     let columns = [
@@ -106,32 +105,34 @@ struct ContentView: View {
     
     let column = [GridItem(.flexible())]
 
-    
+    @State var search = false
+    @State var searchText = ""
     @State var gridOption = false
     var body: some View {
                 ScrollView {
-                    HStack {
-                        Button(action: {}) {
-                            HStack {
-                                Image(systemName: "magnifyingglass")
+                        HStack {
+                            Button(action: {
+                                withAnimation {search.toggle()}
+                            }) {
+                                HStack {
+                                    Image(systemName: "magnifyingglass").foregroundColor(.gray).font(.title2)
+                                }
                             }
-                        }.circleButton()
-                        Spacer(minLength: 0)
-                        Image("logoDark")
-                            .resizable()
-                            .frame(width: 150, height: 40)
-                            .aspectRatio(contentMode: .fit)
-                        
-                        Spacer(minLength: 0)
-                        Button(action: {
-                            withAnimation {
-                                gridOption.toggle()
+                            Spacer(minLength: 0)
+                            Image("logoDark")
+                                .resizable()
+                                .frame(width: 150, height: 40)
+                                .aspectRatio(contentMode: .fit)
+                            
+                            Spacer(minLength: 0)
+                            Button(action: {
+                                withAnimation {
+                                    gridOption.toggle()
+                                }
+                            }) {
+                                Image(systemName: gridOption ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill").foregroundColor(.gray).font(.title2)
                             }
-                        }) {
-                            Image(systemName: gridOption ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
-                        }.circleButton()
-                    }.padding()
-                    
+                        }.padding()
                     
                     LazyVGrid(columns: gridOption ? columns : column , alignment: .center) {
                         ForEach(cocktails) { m in
