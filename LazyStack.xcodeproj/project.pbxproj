@@ -13,6 +13,8 @@
 		EA301D222565320200A0E7FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA301D0D2565320000A0E7FF /* ContentView.swift */; };
 		EA301D232565320200A0E7FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA301D0E2565320200A0E7FF /* Assets.xcassets */; };
 		EA301D242565320200A0E7FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA301D0E2565320200A0E7FF /* Assets.xcassets */; };
+		EA6E7A5A2586558700C578F1 /* HView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E7A592586558700C578F1 /* HView.swift */; };
+		EA6E7A5B2586558700C578F1 /* HView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E7A592586558700C578F1 /* HView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		EA301D1B2565320200A0E7FF /* LazyStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA301D1D2565320200A0E7FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA301D1E2565320200A0E7FF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		EA6E7A592586558700C578F1 /* HView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,7 @@
 			children = (
 				EA301D0C2565320000A0E7FF /* LazyStackApp.swift */,
 				EA301D0D2565320000A0E7FF /* ContentView.swift */,
+				EA6E7A592586558700C578F1 /* HView.swift */,
 				EA301D0E2565320200A0E7FF /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -188,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA301D212565320200A0E7FF /* ContentView.swift in Sources */,
+				EA6E7A5A2586558700C578F1 /* HView.swift in Sources */,
 				EA301D1F2565320200A0E7FF /* LazyStackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA301D222565320200A0E7FF /* ContentView.swift in Sources */,
+				EA6E7A5B2586558700C578F1 /* HView.swift in Sources */,
 				EA301D202565320200A0E7FF /* LazyStackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

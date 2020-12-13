@@ -115,13 +115,13 @@ struct ContentView: View {
                                 withAnimation {search.toggle()}
                             }) {
                                 HStack {
-                                    Image(systemName: "magnifyingglass").foregroundColor(.gray).font(.title2)
+                                    Image(systemName: "magnifyingglass").foregroundColor(.black).font(.title2)
                                 }
                             }
                             Spacer(minLength: 0)
                             Image("logoDark")
                                 .resizable()
-                                .frame(width: 150, height: 40)
+                                .frame(width: 90, height: 25)
                                 .aspectRatio(contentMode: .fit)
                             
                             Spacer(minLength: 0)
@@ -130,7 +130,7 @@ struct ContentView: View {
                                     gridOption.toggle()
                                 }
                             }) {
-                                Image(systemName: gridOption ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill").foregroundColor(.gray).font(.title2)
+                                Image(systemName: gridOption ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill").foregroundColor(.black).font(.title2)
                             }
                         }.padding()
                     
