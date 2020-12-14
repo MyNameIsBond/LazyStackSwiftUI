@@ -8,6 +8,8 @@ struct Drinks: Identifiable {
     var type: String
 }
 
+// Try to make an API 
+
 let cocktails = [
     Drinks(name: "A1", image: "2x8thr1504816928", description: "Pour all ingredients into a cocktail shaker, mix and serve over ice into a chilled glass.", type: "Alcoholic"),
     Drinks(name: "ABC", image: "tqpvqp1472668328", description: "Layered in a shot glass.", type: "Alcoholic"),
