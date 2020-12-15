@@ -1,25 +1,53 @@
-//
-//  HView.swift
-//  LazyStack
-//
-//  Created by Tony Hajdini on 13/12/2020.
-//
 
 import SwiftUI
 
-struct HView: View {
+var rows = [
+   GridItem(.flexible())
+]
+
+struct HViewGrid: View {
+    var title: String
+    @State var seeMore = false
+    let rows = [
+        GridItem(.flexible()),GridItem(.flexible())
+    ]
+    
+    let row = [
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
-        LazyHGrid(rows: /*@START_MENU_TOKEN@*/[GridItem(.fixed(20))]/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, pinnedViews: /*@START_MENU_TOKEN@*/[]/*@END_MENU_TOKEN@*/, content: {
-            /*@START_MENU_TOKEN@*/Text("Placeholder")/*@END_MENU_TOKEN@*/
-            /*@START_MENU_TOKEN@*/Text("Placeholder")/*@END_MENU_TOKEN@*/
-        }) {
+        VStack {
+            HStack {
+                Text(title).bold()
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        self.seeMore.toggle()
+                    }
+                }, label: {
+                    Text( seeMore ? "See Less..." : "See More...")
+                })
+            }.padding(.horizontal)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHGrid(rows: seeMore ? rows : row, alignment: .firstTextBaseline) {
+                        ForEach(cocktails) { m in
+                            doubleColumn(m: m).frame(width: 150)
+                        }
+                    }.padding(.leading).frame(height: seeMore ? 410 : 200)
+            }.ignoresSafeArea(edges: .vertical)
+            Divider().padding(.all)
             
+            LazyHGrid(rows: [GridItem(.fixed(20))], alignment: .center, spacing: nil, pinnedViews: [.sectionHeaders, .sectionFooters], content: {
+                Text("Placeholder")
+                Text("Placeholder")
+            })
         }
     }
 }
 
 struct HView_Previews: PreviewProvider {
     static var previews: some View {
-        HView()
+        HViewGrid(title: "Your Favourites")
     }
 }

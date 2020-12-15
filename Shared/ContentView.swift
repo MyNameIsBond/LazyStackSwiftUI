@@ -64,24 +64,6 @@ let cocktails = [
     Drinks(name: "Brandy Flip", image: "6ty09d1504366461", description: "In einem Shaker, der halb mit Eisw ist, Brandy, Ei, Zucker und Sahne vermengen. Gut schctte ln. In ein Sour Glas abseihen und mit der Muskatnuss garnieren.",type: "Alcoholic"),
 ]
 
-extension AnyTransition {
-    static var moveAndFade: AnyTransition {
-        let insertion = AnyTransition.move(edge: .trailing)
-            .combined(with: .opacity)
-        let removal = AnyTransition.scale
-            .combined(with: .opacity)
-        return .asymmetric(insertion: insertion, removal: removal)
-    }
-}
-
-extension Animation {
-    static func ripple(index: Int) -> Animation {
-        Animation.spring(dampingFraction: 0.5)
-            .speed(2)
-            .delay(0.03 * Double(index))
-    }
-}
-
 struct Buttons: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -135,18 +117,24 @@ struct ContentView: View {
                                 Image(systemName: gridOption ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill").foregroundColor(.black).font(.title2)
                             }
                         }.padding()
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Cocktails").font(.title).bold()
+                            Divider()
+                        }
+                        
+                        
+                        Spacer()
+                        
+                    }.padding(.horizontal)
+                    if gridOption {HViewGrid(title: "Your Favourites")}
                     
                     LazyVGrid(columns: gridOption ? columns : column , alignment: .center) {
                         ForEach(cocktails) { m in
                             if gridOption {
-                                doubleColumn(gridOption: gridOption, m: m)
-                                    .transition(.moveAndFade)
-                                    .animation(.ripple(index: 2))
+                                doubleColumn(m: m)
                             } else {
-                                
-                                singleColumn(gridOption: gridOption, m: m)
-                                    .transition(.moveAndFade)
-                                    .animation(.ripple(index: 1))
+                                singleColumn(m: m)
                             }
                         }
                     }.padding(.horizontal)
@@ -156,13 +144,12 @@ struct ContentView: View {
 }
 
 struct singleColumn: View {
-    var gridOption: Bool
     var m: Drinks
     var body: some View {
         ZStack(alignment: .topLeading) {
             Image(m.image)
             .resizable()
-            .frame(height: gridOption ? 100 : 300)
+            .frame(height: 300)
                 .overlay(Color.black.opacity(0.3))
                 .cornerRadius(15)
             VStack(alignment: .leading, spacing: 7) {
@@ -191,7 +178,6 @@ struct singleColumn: View {
 }
 
 struct doubleColumn: View {
-    var gridOption: Bool
     var m: Drinks
     var body: some View {
         VStack {
@@ -203,6 +189,7 @@ struct doubleColumn: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text(m.name)
+                        .lineLimit(1)
                     Spacer()
                     Image(systemName: "a.square.fill")
                 }
