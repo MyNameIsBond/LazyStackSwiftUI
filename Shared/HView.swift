@@ -26,7 +26,9 @@ struct HViewGrid: View {
                         self.seeMore.toggle()
                     }
                 }, label: {
-                    Text( seeMore ? "See Less..." : "See More...")
+                    Image(systemName: "chevron.right")
+                            .rotationEffect(.degrees(seeMore ? 90 : 0))
+                        .foregroundColor(.black)
                 })
             }.padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
@@ -37,11 +39,6 @@ struct HViewGrid: View {
                     }.padding(.leading).frame(height: seeMore ? 410 : 200)
             }.ignoresSafeArea(edges: .vertical)
             Divider().padding(.all)
-            
-            LazyHGrid(rows: [GridItem(.fixed(20))], alignment: .center, spacing: nil, pinnedViews: [.sectionHeaders, .sectionFooters], content: {
-                Text("Placeholder")
-                Text("Placeholder")
-            })
         }
     }
 }
