@@ -8,8 +8,6 @@ struct Drinks: Identifiable {
     var type: String
 }
 
-// Try to make an API 
-
 let cocktails = [
     Drinks(name: "A1", image: "2x8thr1504816928", description: "Pour all ingredients into a cocktail shaker, mix and serve over ice into a chilled glass.", type: "Alcoholic"),
     Drinks(name: "ABC", image: "tqpvqp1472668328", description: "Layered in a shot glass.", type: "Alcoholic"),
@@ -63,23 +61,6 @@ let cocktails = [
     Drinks(name: "Boston Sour", image: "kxlgbi1504366100", description: "Shake juice of lemon, powdered sugar, blended whiskey, and egg white with cracked ice and strain into a whiskey sour glass. Add the slice of lemon, top with the cherry, and serve.",type: "Alcoholic"),
     Drinks(name: "Brandy Flip", image: "6ty09d1504366461", description: "In einem Shaker, der halb mit Eisw ist, Brandy, Ei, Zucker und Sahne vermengen. Gut schctte ln. In ein Sour Glas abseihen und mit der Muskatnuss garnieren.",type: "Alcoholic"),
 ]
-
-struct Buttons: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .padding(10)
-            .foregroundColor(Color.gray)
-            .background(Color.white)
-            .clipShape(Circle())
-            .shadow(radius: 4)
-    }
-}
-
-extension View {
-    func circleButton() -> some View {
-           modifier(Buttons())
-       }
-}
 
 struct ContentView: View {
     

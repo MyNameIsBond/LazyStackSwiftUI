@@ -1,9 +1,7 @@
 
 import SwiftUI
 
-var rows = [
-   GridItem(.flexible())
-]
+
 
 struct HViewGrid: View {
     var title: String
