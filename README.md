@@ -1,4 +1,4 @@
-<h1>LazyVGrid and LazyHGrid in SwiftUI (Part 1/3) </h1>
+<h1>LazyVGrid and LazyHGrid in SwiftUI  (Part 1/3) </h1>
 
 ![alt text](https://thehappyprogrammer.com/wp-content/uploads/2020/11/LazyVGrid.png?w=1673&ssl=1?raw=true)
 
